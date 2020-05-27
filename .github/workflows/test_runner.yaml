@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install --upgrade "git+ssh://git@github.com/ebmdatalab/opensafely-research-template.git@eggify#egg=opensafely-cohort-extractor"
+        pip install git+https://${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}@github.com/ebmdatalab/opensafely-research-template.git@eggify#egg=opensafely-cohort-extractor
     - name: Docker Login
       uses: azure/docker-login@v1
       with:
@@ -25,7 +25,7 @@ jobs:
         # have to use a personal token with the correct permissions instead
         login-server: docker.pkg.github.com
         username: sebbacon
-        password: ${{ secrets.DOCKER_GITHUB_TOKEN }}
+        password: ${{ secrets.PACKAGE_READ_ACCESS_TOKEN }}
     - name: Generate dummy data
       run: cohort-extractor generate_cohort --expectations-population=10000
     - name: Run model
