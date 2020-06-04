@@ -27,7 +27,7 @@ jobs:
         username: sebbacon
         password: ${{ secrets.PACKAGE_READ_ACCESS_TOKEN }}
     - name: Generate dummy data
-      run: cohort-extractor generate_cohort --expectations-population=1000
+      run: cohort-extractor generate_cohort --expectations-population=100000
     - name: Commit changes to dummy data
       uses: EndBug/add-and-commit@v4
       with:
