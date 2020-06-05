@@ -27,7 +27,7 @@ jobs:
         username: sebbacon
         password: ${{ secrets.PACKAGE_READ_ACCESS_TOKEN }}
     - name: Generate dummy data
-      run: cohort-extractor generate_cohort --expectations-population=1000
+      run: cohortextractor generate_cohort --expectations-population=1000
     - name: Commit changes to dummy data
       uses: EndBug/add-and-commit@v4
       with:
@@ -35,7 +35,7 @@ jobs:
         force: true
         add: "analysis/input*csv"
     - name: Update codelists
-      run: cohort-extractor update_codelists
+      run: cohortextractor update_codelists
     - name: Commit changes frozen codelists
       uses: EndBug/add-and-commit@v4
       with:
