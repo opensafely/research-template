@@ -40,7 +40,7 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Development build of ${{ steps.extract_version.outputs.version }}"
+        title: "Development build of ${{ github.event.pull_request.head.ref }}"
         automatic_release_tag: ${{ github.event.pull_request.head.ref }}
         draft: false
         prerelease: true
