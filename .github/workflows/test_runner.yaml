@@ -8,8 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Test stata can run against the model, using dummy data
     steps:
-    - name: Debug
-      uses: hmarr/debug-action@v1.0.0
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
     - name: Checkout
       uses: actions/checkout@v1
     - name: Set up Python 3.8
@@ -42,8 +44,8 @@ jobs:
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Development build of ${{ github.event.pull_request.head.ref }}"
-        automatic_release_tag: ${{ github.event.pull_request.head.ref }}
+        title: "Development build of ${{ steps.extract_branch.outputs.branch }}"
+        automatic_release_tag: ${{ steps.extract_branch.outputs.branch }}
         draft: false
         prerelease: true
         files: |
@@ -64,7 +66,7 @@ jobs:
       if: github.pull_request.merged == true
       uses: author/action-rollback@stable
       with:
-        tag: ${{ github.event.pull_request.head.ref }}
+        tag: ${{ steps.extract_branch.outputs.branch }}
         always_delete_tag: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
