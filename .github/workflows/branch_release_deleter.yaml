@@ -7,8 +7,6 @@ jobs:
   delete_release:
     runs-on: ubuntu-latest
     steps:
-    - name: Debug Action
-      uses: hmarr/debug-action@v1.0.0
     - name: Delete non-master branch release
       uses: author/action-rollback@stable
       with:
