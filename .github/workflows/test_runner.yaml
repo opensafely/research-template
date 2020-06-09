@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Test stata can run against the model, using dummy data
     steps:
+    - name: Debug Action
+      uses: hmarr/debug-action@v1.0.0
     - name: Checkout
       uses: actions/checkout@v1
     - name: Set up Python 3.8
