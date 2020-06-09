@@ -61,7 +61,7 @@ jobs:
         prerelease: false
         files: |
           ./analysis/input*csv
-
+        # comment for deletion
     - name: Delete non-master branch release on merge
       if: github.pull_request.merged == true
       uses: author/action-rollback@stable
