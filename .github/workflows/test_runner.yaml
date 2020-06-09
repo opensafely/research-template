@@ -9,7 +9,7 @@ jobs:
     name: Test stata can run against the model, using dummy data
     steps:
     - name: Debug
-      uses: hmarr/debug-action
+      uses: hmarr/debug-action@v1.0.0
     - name: Checkout
       uses: actions/checkout@v1
     - name: Set up Python 3.8
