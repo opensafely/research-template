@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Test stata can run against the model, using dummy data
     steps:
-    - name: Debug Action
-      uses: hmarr/debug-action@v1.0.0
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
@@ -47,7 +45,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         title: "Development build of ${{ steps.extract_branch.outputs.branch }}"
-        automatic_release_tag: ${{ steps.extract_branch.outputs.branch }}
+        automatic_release_tag: draft-assets-for-${{ steps.extract_branch.outputs.branch }}
         draft: false
         prerelease: true
         files: |
