@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Extract branch name
       shell: bash
+      # This is a github workflow command
+      # https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
     - name: Checkout
@@ -43,7 +45,7 @@ jobs:
     - name: Run model
       run: docker run --mount source=${{ github.workspace }},dst=/workspace,type=bind docker.pkg.github.com/opensafely/stata-docker/stata-mp analysis/model.do
 
-    - name: Create Prelease (non-master branch) Release
+    - name: Create pre-release if on non-master branch
       if: github.ref != 'master'
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
@@ -54,7 +56,7 @@ jobs:
         prerelease: true
         files: |
           ./analysis/input*csv
-    - name: Create full (master branch) Release
+    - name: Create full release if on master branch
       if: github.ref == 'master' || github.pull_request.merged == true
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
