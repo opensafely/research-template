@@ -1,0 +1,16 @@
+name: Delete prereleases related to deleted branch
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete_release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Delete non-master branch release
+      uses: author/action-rollback@stable
+      with:
+        tag: draft-assets-for-${{ github.event.pull_request.head.ref }}
+        always_delete_tag: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

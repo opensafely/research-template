@@ -1,4 +1,4 @@
-name: Tests
+name: Run tests and publish dummy data as release
 
 on: [push]
 env:
@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Test stata can run against the model, using dummy data
     steps:
+    - name: Extract branch name
+      shell: bash
+      # This is a github workflow command
+      # https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
     - name: Checkout
       uses: actions/checkout@v1
     - name: Set up Python 3.8
@@ -26,20 +32,37 @@ jobs:
         login-server: docker.pkg.github.com
         username: sebbacon
         password: ${{ secrets.PACKAGE_READ_ACCESS_TOKEN }}
+
     - name: Update codelists
       run: cohortextractor update_codelists
-    - name: Commit changes frozen codelists
-      uses: EndBug/add-and-commit@v4
-      with:
-        message: "Automatically frozen codelists"
-        add: "codelists/*csv"
+    - name: Check codelists are up to date
+      run: '[[ -z $(git status --porcelain codelists) ]] || (echo "Uncommitted changes to codelists detected, aborting" && exit 1)'
+
     - name: Generate dummy data
-      run: cohortextractor generate_cohort --expectations-population=1000
-    - name: Commit changes to dummy data
-      uses: EndBug/add-and-commit@v4
-      with:
-        message: "Automatically generated dummy data"
-        force: true
-        add: "analysis/input*csv"
+      run: cohortextractor generate_cohort --expectations-population=100000
+
     - name: Run model
       run: docker run --mount source=${{ github.workspace }},dst=/workspace,type=bind docker.pkg.github.com/opensafely/stata-docker/stata-mp analysis/model.do
+
+    - name: Create pre-release if on non-master branch
+      if: github.ref != 'master'
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Development build of ${{ steps.extract_branch.outputs.branch }}"
+        automatic_release_tag: draft-assets-for-${{ steps.extract_branch.outputs.branch }}
+        draft: false
+        prerelease: true
+        files: |
+          ./analysis/input*csv
+    - name: Create full release if on master branch
+      if: github.ref == 'master' || github.pull_request.merged == true
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Latest production build"
+        automatic_release_tag: "latest"
+        draft: false
+        prerelease: false
+        files: |
+          ./analysis/input*csv
