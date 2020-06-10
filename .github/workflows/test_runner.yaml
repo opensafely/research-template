@@ -35,7 +35,6 @@ jobs:
 
     - name: Update codelists
       run: cohortextractor update_codelists
-
     - name: Check codelists are up to date
       run: '[[ -z $(git status --porcelain codelists) ]] || (echo "Uncommitted changes to codelists detected, aborting" && exit 1)'
 
