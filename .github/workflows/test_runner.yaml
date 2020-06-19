@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install git+https://${{ secrets.PRIVATE_REPO_ACCESS_TOKEN }}@github.com/ebmdatalab/opensafely-research-template.git#egg=opensafely-cohort-extractor
+        pip install opensafely-cohort-extractor
     - name: Docker Login
       uses: azure/docker-login@v1
       with:
