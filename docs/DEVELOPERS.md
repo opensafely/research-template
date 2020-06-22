@@ -49,7 +49,7 @@ Your model **must** start by importing the dataset, which will be called
 For portability, the recommended way of starting your model is:
 
 ```stata
-import delimited `c(pwd)'/analysis/input.csv
+import delimited `c(pwd)'/output/input.csv
 ```
 
 ## Defining covariates
@@ -72,4 +72,3 @@ There are three ways to run your model:
 
 * Directly in your usual development environent. For example, if you have Stata installed locally, just open `model.do` and run as normal
 * Using a dockerised Stata docker image (documentation to follow)
-

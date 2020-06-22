@@ -54,7 +54,7 @@ jobs:
         draft: false
         prerelease: true
         files: |
-          ./analysis/input*csv
+          ./output/input*csv
     - name: Create full release if on master branch
       if: github.ref == 'master' || github.pull_request.merged == true
       uses: "marvinpinto/action-automatic-releases@latest"
@@ -65,4 +65,4 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ./analysis/input*csv
+          ./output/input*csv
