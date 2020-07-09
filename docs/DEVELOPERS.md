@@ -72,3 +72,6 @@ There are three ways to run your model:
 
 * Directly in your usual development environent. For example, if you have Stata installed locally, just open `model.do` and run as normal
 * Using a dockerised Stata docker image (documentation to follow)
+
+If you are using userwritten Stata programs, be aware that `ssc install <programname>` will result in the code failing tests, as it cannot be executed on the server due to restricted internet access. Userwritten programs should instead be provided as standalone ado files in the `/analysis` folder for running on the server. 
+
