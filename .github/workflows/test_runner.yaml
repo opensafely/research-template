@@ -1,4 +1,4 @@
-name: Run tests and publish dummy data as release
+name: Test that the project is runnable
 
 on: [push]
 env:
@@ -6,14 +6,8 @@ env:
 jobs:
   test_model:
     runs-on: ubuntu-latest
-    name: Test stata can run against the model, using dummy data
+    name: Test the project can run, using dummy data
     steps:
-    - name: Extract branch name
-      shell: bash
-      # This is a github workflow command
-      # https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
     - name: Checkout
       uses: actions/checkout@v1
     - name: Set up Python 3.8
@@ -38,31 +32,5 @@ jobs:
     - name: Check codelists are up to date
       run: '[[ -z $(git status --porcelain codelists) ]] || (echo "Uncommitted changes to codelists detected, aborting" && exit 1)'
 
-    - name: Generate dummy data
-      run: cohortextractor generate_cohort --expectations-population=100000
-
-    - name: Run model
-      run: docker run --mount source=${{ github.workspace }},dst=/workspace,type=bind docker.opensafely.org/stata-mp analysis/model.do
-
-    - name: Create pre-release if on non-master branch
-      if: github.ref != 'master'
-      uses: "marvinpinto/action-automatic-releases@latest"
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Development build of ${{ steps.extract_branch.outputs.branch }}"
-        automatic_release_tag: draft-assets-for-${{ steps.extract_branch.outputs.branch }}
-        draft: false
-        prerelease: true
-        files: |
-          ./output/input*csv
-    - name: Create full release if on master branch
-      if: github.ref == 'master' || github.pull_request.merged == true
-      uses: "marvinpinto/action-automatic-releases@latest"
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Latest production build"
-        automatic_release_tag: "latest"
-        draft: false
-        prerelease: false
-        files: |
-          ./output/input*csv
+    - name: Run the project
+      run: cohortextractor --verbose run dummy run_all expectations
