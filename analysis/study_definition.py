@@ -1,4 +1,14 @@
-from cohortextractor import StudyDefinition, patients, codelist, codelist_from_csv
+
+# Import functions
+
+from cohortextractor import (
+    StudyDefinition, 
+    patients, 
+    codelist, 
+    codelist_from_csv
+)
+
+# Import codelists
 
 chronic_cardiac_disease_codes = codelist_from_csv(
     "codelists/opensafely-chronic-cardiac-disease.csv", system="ctv3", column="CTV3ID"
@@ -14,6 +24,9 @@ salbutamol_codes = codelist_from_csv(
 systolic_blood_pressure_codes = codelist(["2469."], system="ctv3")
 diastolic_blood_pressure_codes = codelist(["246A."], system="ctv3")
 
+
+# Specifiy study defeinition
+
 study = StudyDefinition(
     # Configure the expectations framework
     default_expectations={
@@ -25,6 +38,7 @@ study = StudyDefinition(
         "2019-02-01", "2020-02-01"
     ),
 
+    # https://github.com/opensafely/risk-factors-research/issues/49
     age=patients.age_as_of(
         "2020-02-01",
         return_expectations={
@@ -32,14 +46,16 @@ study = StudyDefinition(
             "int": {"distribution": "population_ages"},
         },
     ),
-
+    
+    # https://github.com/opensafely/risk-factors-research/issues/46
     sex=patients.sex(
         return_expectations={
             "rate": "universal",
             "category": {"ratios": {"M": 0.49, "F": 0.51}},
         }
     ),
-
+    
+    # https://codelists.opensafely.org/codelist/opensafely/chronic-cardiac-disease/2020-04-08/
     chronic_cardiac_disease=patients.with_these_clinical_events(
         chronic_cardiac_disease_codes,
         returning="date",
@@ -48,6 +64,7 @@ study = StudyDefinition(
         return_expectations={"incidence": 0.2},
     ),
 
+    # https://codelists.opensafely.org/codelist/opensafely/chronic-liver-disease/2020-06-02/
     chronic_liver_disease=patients.with_these_clinical_events(
         chronic_liver_disease_codes,
         returning="date",
@@ -59,6 +76,7 @@ study = StudyDefinition(
         },
     ),
 
+    # https://github.com/opensafely/risk-factors-research/issues/51
     bmi=patients.most_recent_bmi(
         on_or_after="2010-02-01",
         minimum_age_at_measurement=16,
@@ -70,6 +88,7 @@ study = StudyDefinition(
         },
     ),
 
+    # https://github.com/opensafely/risk-factors-research/issues/48
     bp_sys=patients.mean_recorded_value(
         systolic_blood_pressure_codes,
         on_most_recent_day_of_measurement=True,
@@ -81,7 +100,8 @@ study = StudyDefinition(
             "float": {"distribution": "normal", "mean": 80, "stddev": 10},
         },
     ),
-
+    
+    # https://github.com/opensafely/risk-factors-research/issues/48
     bp_dias=patients.mean_recorded_value(
         diastolic_blood_pressure_codes,
         on_most_recent_day_of_measurement=True,
@@ -94,6 +114,7 @@ study = StudyDefinition(
         },
     ),
 
+    # https://github.com/opensafely/risk-factors-research/issues/44
     stp=patients.registered_practice_as_of(
         "2020-02-01",
         returning="stp_code",
@@ -102,7 +123,8 @@ study = StudyDefinition(
             "category": {"ratios": {"STP1": 0.5, "STP2": 0.5}},
         },
     ),
-
+    
+    # https://github.com/opensafely/risk-factors-research/issues/44
     msoa=patients.registered_practice_as_of(
         "2020-02-01",
         returning="msoa_code",
@@ -112,6 +134,7 @@ study = StudyDefinition(
         },
     ),
 
+    # https://github.com/opensafely/risk-factors-research/issues/45
     imd=patients.address_as_of(
         "2020-02-01",
         returning="index_of_multiple_deprivation",
@@ -122,6 +145,7 @@ study = StudyDefinition(
         },
     ),
 
+    # https://github.com/opensafely/risk-factors-research/issues/47
     rural_urban=patients.address_as_of(
         "2020-02-01",
         returning="rural_urban_classification",
@@ -130,7 +154,8 @@ study = StudyDefinition(
             "category": {"ratios": {"rural": 0.1, "urban": 0.9}},
         },
     ),
-
+ 
+    # https://codelists.opensafely.org/codelist/opensafely/asthma-inhaler-salbutamol-medication/2020-04-15/
     recent_salbutamol_count=patients.with_these_medications(
         salbutamol_codes,
         between=["2018-02-01", "2020-02-01"],
