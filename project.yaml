@@ -5,7 +5,7 @@ expectations:
 
 actions:
 
-  generate_cohorts:
+  generate_study_population:
     run: cohortextractor:latest generate_cohort --study-definition study_definition
     outputs:
       highly_sensitive:
