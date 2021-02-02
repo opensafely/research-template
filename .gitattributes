@@ -1,0 +1,3 @@
+# ensure unix line endings on windows for files that need them.
+*.sh eol=lf
+codelists/* eol=lf
