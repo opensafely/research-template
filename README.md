@@ -1,10 +1,6 @@
-# OpenSAFELY Research Template
+# {{project_name}}
 
-This is a template repository for making new OpenSAFELY resarch projects.
-
-# _title goes here_
-
-This is the code and configuration for our paper, _name goes here_
+This is the code and configuration for {{project_name}}
 
 * The paper is [here]()
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
