@@ -1,3 +1,0 @@
-opensafely/chronic-cardiac-disease/2020-04-08
-opensafely/chronic-liver-disease/2020-06-02
-opensafely/asthma-inhaler-salbutamol-medication/2020-04-15
