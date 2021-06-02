@@ -26,3 +26,10 @@ github:
     addComment: true
     # add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: false
+
+vscode:
+  extensions:
+    - ms-python.python
+    - vscode.html-language-features
+    - redhat.vscode-yaml
+    - ikuyadeu.r
