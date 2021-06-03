@@ -1,0 +1,12 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "data.preview.create.json.schema": false,
+    "files.associations": {
+        "*.feather": "arrow",
+    },
+    "window.autoDetectColorScheme": true,
+    "extensions.ignoreRecommendations": true,
+    "data.preview.theme": "light"
+}

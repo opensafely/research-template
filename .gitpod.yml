@@ -1,3 +1,4 @@
+---
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - name: Install opensafely cli tool
@@ -33,3 +34,4 @@ vscode:
     - vscode.html-language-features
     - redhat.vscode-yaml
     - ikuyadeu.r
+    - randomfractalsinc.vscode-data-preview
