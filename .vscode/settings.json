@@ -3,10 +3,15 @@
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
     "data.preview.create.json.schema": false,
+    "data.preview.theme": "light",
+    // this doesn't work, don't know why yet
     "files.associations": {
         "*.feather": "arrow",
     },
     "window.autoDetectColorScheme": true,
     "extensions.ignoreRecommendations": true,
-    "data.preview.theme": "light"
+    "workbench.startupEditor": "readme",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "window.menuBarVisibility": "visible"
 }
