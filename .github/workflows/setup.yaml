@@ -1,0 +1,43 @@
+name: Setup repository
+on:
+  workflow_dispatch:
+  push:
+      branches: [main]
+jobs:
+  setup:
+    name: Initialise OpenSAFELY project.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update README.md and remove action
+        shell: bash
+        run: |
+          export GITHUB_REPOSITORY_OWNER="$(echo $GITHUB_REPOSITORY | awk -F/ '{print $1}')"
+          export GITHUB_REPOSITORY_NAME="$(echo $GITHUB_REPOSITORY | awk -F/ '{print $2}')"
+          envsubst < README.md > tmp && mv tmp README.md
+          rm .github/workflows/setup.yaml
+      - name: Do not run on template repository
+        id: is_template
+        # The only way to trigger this to run when used as a template is on
+        # push to main.  But that means it would also trigger when we push to
+        # the template repo itself, which we do not want. So, check if we are
+        # in a template repo
+        run: |
+          is_template=false
+          curl --silent -X GET \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.baptiste-preview+json" \
+            https://api.github.com/repos/$GITHUB_REPOSITORY \
+            | jq --exit-status '.is_template == false' || is_template=true
+          # output true/false so later actions can be skipped
+          echo "::set-output name=is_template::$is_template"
+      - name: Commit changes
+        # only actually commit the changes if this is not a template repo
+        if: steps.is_template.outputs.is_template == 'false'
+        run: |
+          # use the same author as the initial commit
+          git config user.email "$(git log -1 --pretty=format:'%ae')"
+          git config user.name "$(git log -1 --pretty=format:'%an')"
+          git add .
+          git commit --amend --no-edit
+          git push origin main --force

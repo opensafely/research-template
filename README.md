@@ -1,6 +1,8 @@
-# {{project_name}}
+# ${GITHUB_REPOSITORY_NAME}
 
-This is the code and configuration for {{project_name}}
+This is the code and configuration for ${GITHUB_REPOSITORY_NAME}.
+
+You can run this project via [Gitpod](https://gitpod.io): [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/${GITHUB_REPOSITORY})
 
 * The paper is [here]()
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
