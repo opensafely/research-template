@@ -40,4 +40,4 @@ jobs:
           git config user.name "$(git log -1 --pretty=format:'%an')"
           git add .
           git commit --amend --no-edit
-          git push origin main --force
+          git push origin $GITHUB_REF --force
