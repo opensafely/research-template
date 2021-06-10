@@ -12,11 +12,8 @@ You can run this project via [Gitpod](https://gitpod.io): [![Gitpod ready-to-cod
 
 # About the OpenSAFELY framework
 
-The OpenSAFELY framework is a secure analytics platform for
-electronic health records research in the NHS.
+The OpenSAFELY framework is a Trusted Research Environment (TRE) for electronic
+health records research in the NHS, with a focus on public accountability and
+research quality.
 
-Instead of requesting access for slices of patient data and
-transporting them elsewhere for analysis, the framework supports
-developing analytics against dummy data, and then running against the
-real data *within the same infrastructure that the data is stored*.
 Read more at [OpenSAFELY.org](https://opensafely.org).
