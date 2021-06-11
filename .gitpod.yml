@@ -9,7 +9,10 @@ tasks:
   - name: Update opensafely
     # run every time you open a workspace
     command:
-        opensafely upgrade
+        command -v opensafely && opensafely upgrade
+  - name: setup environment
+    command: test -f .gitpod.env && { set -a; . .gitpod.env; set +a; }
+
 
 github:
   prebuilds:
