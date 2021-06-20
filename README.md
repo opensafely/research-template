@@ -8,7 +8,7 @@ You can run this project via [Gitpod](https://gitpod.io) in a web browser by cli
 * Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
 * If you are interested in how we defined our variables, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
 * If you are interested in how we defined our codelists, look in the [codelists folder](./codelists/).
-* Developers and epidemiologists interested in the framework should review [the OpenSAFELY documentation](https://docs.opensafely.org)
+* Developers and epidemiologists interested in the framework should review [the OpenSAFELY documentation](https://docs.opensafely.org). The OpenSAFELY documentation also explains [how this repository is structured](https://docs.opensafely.org/repositories/).
 
 # About the OpenSAFELY framework
 
