@@ -10,5 +10,5 @@
     "files.autoSaveDelay": 1000,
     "window.autoDetectColorScheme": true,
     "extensions.ignoreRecommendations": true,
-    "data.preview.theme": "light"
+    "data.preview.theme": "light"  
 }
