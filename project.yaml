@@ -6,7 +6,7 @@ expectations:
 actions:
 
   generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition --output-format="gzip"
+    run: cohortextractor:latest generate_cohort --study-definition study_definition --output-format='csv.gz'
     outputs:
       highly_sensitive:
         cohort: output/input.csv.gz
