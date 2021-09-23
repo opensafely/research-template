@@ -10,3 +10,5 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/input.csv.gz
+    ### NOTE if you plan to use Stata to analyse the main input file(s) please use --output-format='dta.gz' instead
+
