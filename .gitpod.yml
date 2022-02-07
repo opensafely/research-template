@@ -1,19 +1,23 @@
 ---
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - name: Install opensafely cli tool
-    # runs when workspace initially created, and as pre-build
+  - name: Install opensafely
+    # prebuild, run in the background on every commit
     init: |
-        pip install opensafely
+        # install everything into a venv in /workspace, so it is persisted in the prebuild image
+        python -m venv /workspace/venv
+        # install opensafely
+        /workspace/venv/bin/pip install --progress-bar off opensafely
+        # ensure essential docker images are preloaded preloaded
+        /workspace/venv/bin/opensafely pull cohortextractor
+    # run everytime we start a workspace
+    command: |
+        # limit action concurrency to as not to exhaust gitpod's RAM
+        export MAX_WORKERS=2
+        # add opensafely to the path
+        export PATH=/workspace/venv/bin:$PATH
+        opensafely upgrade
         opensafely pull --project project.yaml
-  - name: Update opensafely
-    # run every time you open a workspace
-    command:
-        command -v opensafely && opensafely upgrade
-  - name: setup environment
-    command: test -f .gitpod.env && { set -a; . .gitpod.env; set +a; }
-
-
 github:
   prebuilds:
     # enable for the default branch (defaults to true)
