@@ -7,3 +7,5 @@ __pycache__
 metadata/*
 venv/
 .DS_Store
+.Rhistory
+.Rproj.user/
