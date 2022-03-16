@@ -1,12 +1,33 @@
 version: '3.0'
 
 expectations:
-  population_size: 1000
+  population_size: 1000000
 
 actions:
 
   generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition
+    run: cohortextractor:latest generate_cohort --output-format csv.gz --study-definition study_definition
     outputs:
       highly_sensitive:
-        cohort: output/input.csv
+        cohort: output/input.csv.gz
+
+  python_example:
+    run: python:latest analysis/example.py
+    needs: [generate_study_population]
+    outputs:
+      highly_sensitive:
+        cohort: output/python.feather*
+
+  stata_example:
+    run: stata-mp:latest analysis/example.do
+    needs: [generate_study_population]
+    outputs:
+      highly_sensitive:
+        cohort: output/stata.dta.gz
+
+  r_example:
+    run: r:latest analysis/example.r
+    needs: [generate_study_population]
+    outputs:
+      highly_sensitive:
+        cohort: output/r.feather*
