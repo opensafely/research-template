@@ -5,10 +5,13 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKER_RO_TOKEN: ${{ secrets.DOCKER_RO_TOKEN }}
   STATA_LICENSE: ${{ secrets.STATA_LICENSE }}
+  HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY }}
 jobs:
   test:
     runs-on: ubuntu-latest
     name: Test the project can run, using dummy data
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Test that the project is runnable
-      uses: opensafely-core/research-action@v1
+      uses: opensafely-core/research-action@v2
