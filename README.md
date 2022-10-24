@@ -1,14 +1,11 @@
 # ${GITHUB_REPOSITORY_NAME}
 
-This is the code and configuration for ${GITHUB_REPOSITORY_NAME}.
+[View on OpenSAFELY](https://jobs.opensafely.org/repos/https%3A%2F%2Fgithub.com%2F${GITHUB_REPOSITORY_OWNER}%2F${GITHUB_REPOSITORY_NAME})
 
-You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/${GITHUB_REPOSITORY})
-
-* The paper is [here]()
-* Raw model outputs, including charts, crosstabs, etc, are in `released_outputs/`
-* If you are interested in how we defined our variables, take a look at the [study definition](analysis/study_definition.py); this is written in `python`, but non-programmers should be able to understand what is going on there
-* If you are interested in how we defined our code lists, look in the [codelists folder](./codelists/).
-* Developers and epidemiologists interested in the framework should review [the OpenSAFELY documentation](https://docs.opensafely.org)
+Results in this repository MUST NOT be considered an accurate or valid representation of the study purpose. These data may reflect an incomplete or incorrect analysis with no further ongoing work.
+The repository content has ONLY been made public to support the OpenSAFELY [open science and transparency principles](https://www.opensafely.org/about/#contributing-to-best-practice-around-open-science) and to support the sharing of re-usable code for other subsequent users.
+The results have not been peer-reviewed.
+No clinical, policy or safety conclusions must be drawn from any of the data here.
 
 # About the OpenSAFELY framework
 
