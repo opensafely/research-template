@@ -1,6 +1,6 @@
 # ${GITHUB_REPOSITORY_NAME}
 
-[View on OpenSAFELY](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252F${GITHUB_REPOSITORY_OWNER}%252F${GITHUB_REPOSITORY_NAME})
+[View on OpenSAFELY](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252Fopensafely%252F${GITHUB_REPOSITORY_NAME})
 
 Details of the purpose and any published outputs from this project can be found at the link above.
 
