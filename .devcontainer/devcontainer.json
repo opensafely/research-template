@@ -13,7 +13,6 @@
 		// TODO: Not sure if we would be better installing tools via requirements.txt.
 		"ghcr.io/devcontainers/features/python:1": {
 			"installTools": true,
-			"installJupyterlab": true,
 			// https://github.com/devcontainers/features/issues/598#issuecomment-1612216163
 			"version": "none"
 		},
