@@ -10,12 +10,6 @@
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		// TODO: Not sure if we would be better installing tools via requirements.txt.
-		"ghcr.io/devcontainers/features/python:1": {
-			"installTools": true,
-			// https://github.com/devcontainers/features/issues/598#issuecomment-1612216163
-			"version": "none"
-		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"moby": true,
 			"azureDnsAutoDetection": true,
