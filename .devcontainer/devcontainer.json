@@ -34,8 +34,12 @@
 				"ms-toolsai.jupyter-renderers"
 			]
 		}
-	}
+	},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+
+        "remoteEnv": {
+                "MAX_WORKERS": 2
+        }
 }
