@@ -10,3 +10,9 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/input.csv.gz
+
+  # generate_dataset:
+  #   run: ehrql:v0 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
+  #   outputs:
+  #     highly_sensitive:
+  #       cohort: output/dataset.csv.gz
