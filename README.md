@@ -1,14 +1,16 @@
 # ${GITHUB_REPOSITORY_NAME}
 
-You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/${GITHUB_REPOSITORY})
+This is a repository for work conducted on electronic health records in England via [OpenSAFELY](https://opensafely.org). 
 
-[View on OpenSAFELY](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252Fopensafely%252F${GITHUB_REPOSITORY_NAME})
+Up to date details of the purpose and any published outputs from this project can be found [on OpenSAFELY](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252Fopensafely%252F${GITHUB_REPOSITORY_NAME}).
 
-Details of the purpose and any published outputs from this project can be found at the link above.
+For your interest - to evaluate the code only, without any use of any actual patient data - you can execute the code for this project against randomly generated dummy patient data via [Gitpod](https://gitpod.io/) in a web browser by clicking on this badge: [![Gitpod ready-to-code]
 
-The contents of this repository MUST NOT be considered an accurate or valid representation of the study or its purpose. 
-This repository may reflect an incomplete or incorrect analysis with no further ongoing work.
-The content has ONLY been made public to support the OpenSAFELY [open science and transparency principles](https://www.opensafely.org/about/#contributing-to-best-practice-around-open-science) and to support the sharing of re-usable code for other subsequent users.
+# DISCLAIMER
+This repository contains highly technical content for technical users. It is not a research publication. It has been made public to support the OpenSAFELY [open science and transparency principles] (https://www.opensafely.org/about/#contributing-to-best-practice-around-open-science) and to support the sharing of re-usable code for other subsequent users of the OpenSAFELY platform. 
+This repository must be interpreted in context: it may reflect the final codebase for a published project; or it may be an incomplete project; or have other shortcomings to be expected of a technical working document shared during development of the work.
+Therefore the contents of this repository MUST NOT be considered an accurate or valid representation of the study or its purpose. 
+
 No clinical, policy or safety conclusions must be drawn from the contents of this repository.
 
 # About the OpenSAFELY framework
