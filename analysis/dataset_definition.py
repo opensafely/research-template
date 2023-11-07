@@ -9,6 +9,6 @@ has_registration = practice_registrations.for_patient_on(
     index_date
 ).exists_for_patient()
 
-dataset.age = patients.age_on(index_date)
+dataset.define_population(has_registration)
 
-dataset.define_population(has_registration & (dataset.age > 17))
+dataset.sex = patients.sex
