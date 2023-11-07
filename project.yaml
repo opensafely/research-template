@@ -1,18 +1,12 @@
 version: '3.0'
 
+# Ignore this`expectation` block. It is required but not used, and will be removed in future versions.
 expectations:
   population_size: 1000
 
 actions:
-
-  generate_study_population:
-    run: cohortextractor:latest generate_cohort --output-format csv.gz --study-definition study_definition
+  generate_dataset:
+    run: ehrql:v0 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
     outputs:
       highly_sensitive:
-        cohort: output/input.csv.gz
-
-  # generate_dataset:
-  #   run: ehrql:v0 generate-dataset analysis/dataset_definition.py --output output/dataset.csv.gz
-  #   outputs:
-  #     highly_sensitive:
-  #       cohort: output/dataset.csv.gz
+        dataset: output/dataset.csv.gz
