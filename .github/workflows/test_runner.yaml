@@ -12,6 +12,6 @@ jobs:
     name: Test the project can run, using dummy data
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Test that the project is runnable
       uses: opensafely-core/research-action@v2
