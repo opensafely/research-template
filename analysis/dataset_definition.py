@@ -1,5 +1,5 @@
 from ehrql import create_dataset
-from ehrql.tables.beta.tpp import patients, practice_registrations
+from ehrql.tables.tpp import patients, practice_registrations
 
 dataset = create_dataset()
 
