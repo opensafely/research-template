@@ -32,7 +32,7 @@ jobs:
             https://api.github.com/repos/$GITHUB_REPOSITORY \
             | jq --exit-status '.is_template == false' || is_template=true
           # output true/false so later actions can be skipped
-          echo "::set-output name=is_template::$is_template"
+          echo "is_template=$is_template" >> $GITHUB_OUTPUT
       - name: Commit changes
         # only actually commit the changes if this is not a template repo
         if: steps.is_template.outputs.is_template == 'false'
