@@ -1,8 +1,14 @@
 # ${GITHUB_REPOSITORY_NAME}
 
-[View on OpenSAFELY](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252Fopensafely%252F${GITHUB_REPOSITORY_NAME})
+This is a repository for work conducted on electronic health records in England via [OpenSAFELY](https://opensafely.org).
 
-Details of the purpose and any published outputs from this project can be found at the link above.
+Up to date details of this project can be found by
+[viewing this project on OpenSAFELY](https://jobs.opensafely.org/repo/https%253A%252F%252Fgithub.com%252Fopensafely%252F${GITHUB_REPOSITORY_NAME}). This includes:
+
+*  The project purpose
+*  Logs for all analyses run against real patient data
+*  Published outputs
+*  Links to any related reports/papers
 
 The contents of this repository MUST NOT be considered an accurate or valid representation of the study or its purpose. 
 This repository may reflect an incomplete or incorrect analysis with no further ongoing work.
