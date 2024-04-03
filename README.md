@@ -18,7 +18,11 @@ Up to date details of this project can be found by
 * The project pipeline is specified in [`project.yaml`](./project.yaml).
 * The [logs](./logs/) and [outputs](./outputs/) folders are empty. These are populated when a study is run on OpenSAFELY. Logs and published outputs for analyses run against real patient data are available on OpenSAFELY via the link above.
   
+# Running this repository against dummy data
 
+[//]: # (TODO: Add instructions for codespaces)
+
+For your interest — to evaluate the code only, without any use of any actual patient data — you can execute the code for this project against randomly generated dummy patient data via....
 
 The contents of this repository MUST NOT be considered an accurate or valid representation of the study or its purpose. 
 This repository may reflect an incomplete or incorrect analysis with no further ongoing work.
