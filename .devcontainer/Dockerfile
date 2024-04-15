@@ -1,4 +1,4 @@
-FROM remlapmot/r-docker:2024-04-02-rstudio-renv-1-0-7
+FROM rocker/rstudio:4.0.5
 
 # we are going to use an apt cache on the host, so disable the default debian
 # docker clean up that deletes that cache on every apt install
@@ -14,11 +14,11 @@ RUN --mount=type=cache,target=/var/cache/apt \
     # Pip for Python 3.10 isn't included in deadsnakes, so install separately
     curl https://bootstrap.pypa.io/get-pip.py | python3.10
 
-# copy the renv directory from the OpenSAFELY R action image and active it by
-# default
-RUN R -e 'renv::init(bare = TRUE)'
+# install renv
+RUN --mount=type=cache,target=/cache,id=/cache-2004 R -e 'install.packages("renv", destdir="/cache"); renv::init(bare = TRUE)'
+
+# copy the renv directory from the OpenSAFELY R action image
 COPY --from=ghcr.io/opensafely-core/r /renv/ /renv/
-RUN echo 'source("/renv/renv/activate.R")' >> /etc/R/Rprofile.site
 
 # Copy the Python virtualenv from OpenSAFELY Python action image
 COPY --from=ghcr.io/opensafely-core/python:v2 /opt/venv /opt/venv
