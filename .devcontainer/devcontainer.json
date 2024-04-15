@@ -1,12 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-    "name": "Python 3",
-    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    // 2023-06-29: Use bullseye image instead of bookworm.
-    // At time of writing, bookworm is new and may have issues with dev containers:
-    // https://github.com/devcontainers/features/issues/576
-    "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+    "name": "OpenSAFELY",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
     // Features to add to the dev container. More info: https://containers.dev/features.
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
