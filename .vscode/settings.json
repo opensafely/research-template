@@ -1,4 +1,6 @@
 {
+    "python.analysis.extraPaths": [".devcontainer/ehrql-main/"],
+    "python.defaultInterpreterPath": "/usr/bin/python3.10",
     "data.preview.create.json.schema": false,
     "files.associations": {
         "*.feather": "arrow",
