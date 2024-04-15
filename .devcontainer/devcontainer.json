@@ -13,10 +13,18 @@
             "dockerDashComposeVersion": "v2"
         }
     },
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [],
-    // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "pip3 install --user -r .devcontainer/requirements.in",
+    "postAttachCommand": {
+        "rstudio-start": "sudo rstudio-server start"
+    },
+    "forwardPorts": [
+        8787
+    ],
+    "portsAttributes": {
+        "8787": {
+            "label": "RStudio IDE"
+        }
+    },
     // Configure tool-specific properties.
     "customizations": {
         "vscode": {
