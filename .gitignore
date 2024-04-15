@@ -9,3 +9,5 @@ venv/
 .DS_Store
 .Rhistory
 .Rproj.user/
+
+.devcontainer/ehrql-main
