@@ -13,7 +13,7 @@
             "dockerDashComposeVersion": "v2"
         }
     },
-    "postCreateCommand": "pip3 install --user -r .devcontainer/requirements.in",
+    "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh",
     "postAttachCommand": {
         "rstudio-start": "sudo rstudio-server start"
     },
