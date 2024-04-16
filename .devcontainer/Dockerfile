@@ -1,5 +1,7 @@
 FROM remlapmot/r-docker:2024-04-02-rstudio
 
+LABEL org.opencontainers.image.source https://github.com/opensafely/research-template
+
 # we are going to use an apt cache on the host, so disable the default debian
 # docker clean up that deletes that cache on every apt install
 RUN rm -f /etc/apt/apt.conf.d/docker-clean
