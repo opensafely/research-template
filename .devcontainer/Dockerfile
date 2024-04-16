@@ -12,7 +12,9 @@ RUN --mount=type=cache,target=/var/cache/apt \
     apt update &&\
     apt install -y curl python3.10 python3.10-distutils python3.10-venv &&\
     # Pip for Python 3.10 isn't included in deadsnakes, so install separately
-    curl https://bootstrap.pypa.io/get-pip.py | python3.10
+    curl https://bootstrap.pypa.io/get-pip.py | python3.10 &&\
+    # Set default python, so that the Python virtualenv works as expected
+    rm /usr/bin/python3 && ln -s /usr/bin/python3.10 /usr/bin/python3
 
 # install renv
 RUN --mount=type=cache,target=/cache,id=/cache-2004 R -e 'install.packages("renv", destdir="/cache"); renv::init(bare = TRUE)'
