@@ -5,6 +5,7 @@
     },
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 1000,
+    "git.autofetch": false,
     "window.autoDetectColorScheme": true,
     "extensions.ignoreRecommendations": true,
     "data.preview.theme": "light"  
