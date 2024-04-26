@@ -32,7 +32,18 @@
                 "ms-python.python",
                 "ms-toolsai.jupyter",
                 "ms-toolsai.jupyter-renderers"
-            ]
+            ],
+            "settings": {
+                "extensions.ignoreRecommendations": true,
+                "files.autoSave": "afterDelay",
+                "files.autoSaveDelay": 1000,
+                "git.autofetch": true,
+                "python.analysis.extraPaths": [".devcontainer/ehrql-main/"],
+                "python.defaultInterpreterPath": "/opt/venv/bin/python",
+                "python.terminal.activateEnvInCurrentTerminal": true,
+                "python.terminal.activateEnvironment": true,
+                "window.autoDetectColorScheme": true
+            }
         }
     },
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
