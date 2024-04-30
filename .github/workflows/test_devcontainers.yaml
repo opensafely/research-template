@@ -7,10 +7,23 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-13]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout (GitHub)
         uses: actions/checkout@v4
+
+      - name: Setup macOS Docker
+        if: runner.os == 'macos'
+        run: |
+          brew install colima docker
+          brew services start colima
+
+      - name: Setup macOS Docker Buildx
+        if: runner.os == 'macos'
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.3
