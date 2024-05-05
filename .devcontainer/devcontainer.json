@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
     "name": "OpenSAFELY",
-    "image": "ghcr.io/opensafely/research-template:latest",
+    "image": "ghcr.io/opensafely-core/research-template:v0",
     // Features to add to the dev container. More info: https://containers.dev/features.
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
