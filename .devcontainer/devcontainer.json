@@ -13,7 +13,7 @@
             "dockerDashComposeVersion": "v2"
         }
     },
-    "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh",
+    "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh ${containerWorkspaceFolder}",
     "postAttachCommand": {
         "rstudio-start": "sudo rstudio-server start"
     },
