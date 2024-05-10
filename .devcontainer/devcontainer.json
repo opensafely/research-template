@@ -1,12 +1,8 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-    "name": "Python 3",
-    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    // 2023-06-29: Use bullseye image instead of bookworm.
-    // At time of writing, bookworm is new and may have issues with dev containers:
-    // https://github.com/devcontainers/features/issues/576
-    "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+    "name": "OpenSAFELY",
+    "image": "ghcr.io/opensafely-core/research-template:v0",
     // Features to add to the dev container. More info: https://containers.dev/features.
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -17,10 +13,18 @@
             "dockerDashComposeVersion": "v2"
         }
     },
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [],
-    // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "pip3 install --user -r .devcontainer/requirements.in",
+    "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh",
+    "postAttachCommand": {
+        "rstudio-start": "sudo rstudio-server start"
+    },
+    "forwardPorts": [
+        8787
+    ],
+    "portsAttributes": {
+        "8787": {
+            "label": "RStudio IDE"
+        }
+    },
     // Configure tool-specific properties.
     "customizations": {
         "vscode": {
@@ -28,7 +32,18 @@
                 "ms-python.python",
                 "ms-toolsai.jupyter",
                 "ms-toolsai.jupyter-renderers"
-            ]
+            ],
+            "settings": {
+                "extensions.ignoreRecommendations": true,
+                "files.autoSave": "afterDelay",
+                "files.autoSaveDelay": 1000,
+                "git.autofetch": true,
+                "python.analysis.extraPaths": [".devcontainer/ehrql-main/"],
+                "python.defaultInterpreterPath": "/opt/venv/bin/python",
+                "python.terminal.activateEnvInCurrentTerminal": true,
+                "python.terminal.activateEnvironment": true,
+                "window.autoDetectColorScheme": true
+            }
         }
     },
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
