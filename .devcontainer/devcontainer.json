@@ -11,6 +11,9 @@
             "installDockerBuildx": true,
             "version": "latest",
             "dockerDashComposeVersion": "v2"
+        },
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
         }
     },
     "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh ${containerWorkspaceFolder}",
