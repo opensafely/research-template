@@ -2,7 +2,7 @@
 
 set -euo pipefail 
 
-pip3 install --user -r .devcontainer/requirements.in
+/usr/local/bin/pip3 install --user -r .devcontainer/requirements.in
 
 #set R working directory
 ! grep -q "$1" $R_HOME/etc/Rprofile.site && sudo tee -a $R_HOME/etc/Rprofile.site <<< "setwd(\"$1\")"
