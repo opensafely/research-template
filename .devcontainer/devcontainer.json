@@ -27,6 +27,15 @@
     },
     // Configure tool-specific properties.
     "customizations": {
+        "codespaces": {
+            "repositories": {
+                "opensafely/server-instructions": {
+                    "permissions": {
+                        "contents": "read"
+                    }
+                }
+            }
+        },
         "vscode": {
             "extensions": [
                 "ms-python.python",
