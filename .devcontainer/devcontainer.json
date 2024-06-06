@@ -19,6 +19,7 @@
             "label": "RStudio IDE"
         }
     },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
     "workspaceFolder": "/workspace",
     // Configure tool-specific properties.
     "customizations": {
