@@ -19,6 +19,7 @@
             "label": "RStudio IDE"
         }
     },
+    "workspaceFolder": "/workspace",
     // Configure tool-specific properties.
     "customizations": {
         "codespaces": {
