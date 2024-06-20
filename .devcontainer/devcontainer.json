@@ -7,10 +7,8 @@
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
-    "postCreateCommand": "/bin/bash .devcontainer/postCreate.sh ${containerWorkspaceFolder}",
-    "postAttachCommand": {
-        "rstudio-start": "sudo rstudio-server start"
-    },
+    "postCreateCommand": "/bin/bash /opt/devcontainer/postCreate.sh ${containerWorkspaceFolder}",
+    "postAttachCommand": "/bin/bash /opt/devcontainer/postAttach.sh",
     "forwardPorts": [
         8787
     ],
