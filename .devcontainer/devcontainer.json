@@ -3,10 +3,6 @@
 {
     "name": "OpenSAFELY",
     "image": "ghcr.io/opensafely-core/research-template:v0",
-    // Features to add to the dev container. More info: https://containers.dev/features.
-    "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    },
     "postCreateCommand": "/bin/bash /opt/devcontainer/postCreate.sh ${containerWorkspaceFolder}",
     "postAttachCommand": "/bin/bash /opt/devcontainer/postAttach.sh",
     "forwardPorts": [
