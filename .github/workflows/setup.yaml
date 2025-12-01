@@ -10,7 +10,7 @@ jobs:
     name: Initialise OpenSAFELY project.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Update README.md and remove action
         shell: bash
         run: |
