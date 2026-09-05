@@ -1,0 +1,5 @@
+interface:
+  display_name: "ehrQL Dataset Authoring"
+
+policy:
+  allow_implicit_invocation: true
