@@ -19,11 +19,13 @@ Read more at [OpenSAFELY.org](https://opensafely.org).
 
 # AI-assisted ehrQL development
 
-Codex automatically loads the repository's
-[ehrQL dataset-authoring skill](.agents/skills/ehrql-dataset-authoring/SKILL.md)
-when working in this project, including in GitHub Codespaces. The skill provides
-ehrQL authoring guidance and bundled reference documentation without requiring
-a network download during Codespace setup.
+GitHub Copilot picks up ehrQL authoring guidance for this repository from
+[`.github/instructions/ehrql.instructions.md`](.github/instructions/ehrql.instructions.md)
+(Copilot Chat, applied when editing `analysis/`, `codelists/`, or `dummy-tables/`)
+and from [`AGENTS.md`](AGENTS.md) (the Copilot coding agent). Both point at the
+bundled skill and ehrQL reference library in
+[`.github/skills/ehrql-dataset-authoring/`](.github/skills/ehrql-dataset-authoring/SKILL.md),
+which is vendored into the repo so no network download is needed in a Codespace.
 
 # Licences
 As standard, research projects have a MIT license. 

@@ -1,18 +1,39 @@
 ---
 name: ehrql-dataset-authoring
-description: Use when writing or editing an ehrQL dataset definition (`analysis/dataset_definition.py`) or related assurance tests. This skill explains the ehrQL authoring workflow, how to run `ehrql generate-dataset` for dummy data, how to organise and run assurance tests, and what each bundled upstream ehrQL doc covers.
+description: Use when writing or editing an ehrQL dataset definition (`analysis/dataset_definition.py`) or related assurance tests. This skill explains the ehrQL authoring workflow, how to run ehrQL for dummy data, how to organise and run assurance tests, and what each bundled upstream ehrQL doc covers.
 ---
 
 # ehrQL Dataset Authoring
 
 Use this skill when the user wants to create or modify this project's ehrQL dataset definition or run tests against it.
 
-## Environment setup
+## Required gates
 
-The Codespace image provides the `ehrql` command. Before doing ehrQL work, run
-`ehrql --version` to confirm it is available. Do not scaffold a new project: this
-repository is already an OpenSAFELY project even though it has no
-`pyproject.toml`.
+This repository is already an initialised OpenSAFELY project. Do not scaffold a
+new one. Before editing, confirm `analysis/dataset_definition.py` exists and an
+ehrQL command runs (see Environment below).
+
+Do not report a dataset-definition change as complete until all of the following are true:
+
+- `analysis/test_dataset_definition.py` contains assurance scenarios for the changed behaviour.
+- Assurance tests pass.
+- Dummy-data generation from `analysis/dataset_definition.py` passes.
+
+If a required command cannot run, stop and report the specific blocker. Do not silently skip either validation step.
+
+## Environment
+
+This project runs ehrQL through the OpenSAFELY CLI, pinned to `ehrql:v1` — the
+same version `project.yaml` uses. Check it is available:
+
+```
+opensafely exec ehrql:v1 --version
+```
+
+Prefix every ehrQL subcommand with `opensafely exec ehrql:v1`. The OpenSAFELY
+Codespace image also exposes `ehrql` directly on `PATH`, so a bare
+`ehrql <subcommand> ...` is an equivalent there. If neither runs, stop and report
+the blocker — there is no `uv`/`.venv` fallback in this repo.
 
 ## Local contract
 
@@ -87,11 +108,12 @@ Whenever codelists are imported, add a clearly visible block comment near the to
 
 ## Runbook
 
-- Check the environment: `ehrql --version`
-- Generate dummy data: `ehrql generate-dataset analysis/dataset_definition.py --output output/dataset.csv`
-- Generate dummy data with custom dummy tables: `ehrql generate-dataset analysis/dataset_definition.py --dummy-tables dummy-tables/ --output output/dataset.csv`
+- Generate dummy data: `opensafely exec ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/dataset.csv`
+- Generate dummy data with custom dummy tables: `opensafely exec ehrql:v1 generate-dataset analysis/dataset_definition.py --dummy-tables dummy-tables/ --output output/dataset.csv`
 - Preferred assurance-test file location: `analysis/test_dataset_definition.py`
-- Run assurance tests: `ehrql assure analysis/test_dataset_definition.py`
+- Run assurance tests: `opensafely exec ehrql:v1 assure analysis/test_dataset_definition.py`
+
+(On the OpenSAFELY Codespace image you can drop the `opensafely exec ` prefix and call `ehrql` directly.)
 
 ## Required workflow
 
@@ -99,10 +121,10 @@ Whenever codelists are imported, add a clearly visible block comment near the to
 2. Read `references/source-index.md` for the local doc map.
 3. Open only the upstream docs you need from `references/upstream/`.
 4. Implement the dataset definition with explicit names and readable structure.
-5. Test the result.
-6. Add or update assurance tests in `analysis/test_dataset_definition.py`.
-7. Ensure each assurance-test case is commented so a reviewer can see the exact rule or branch being checked.
-8. Run both assurance tests and dummy-data generation.
+5. Add or update assurance tests in `analysis/test_dataset_definition.py`.
+6. Ensure each assurance-test case is commented so a reviewer can see the exact rule or branch being checked.
+7. Run assurance tests and fix any failures.
+8. Run dummy-data generation and fix any failures.
 9. Update `README.md` to reflect the current state of the dataset definition: describe the brief (what the definition is trying to implement, in plain language) and include the exact command to generate a dataset from it.
 
 Always test. Dummy-data generation checks that the definition compiles and can produce output. Assurance tests are mandatory and check the exact behaviour on representative patients.
@@ -175,7 +197,7 @@ After successfully generating custom dummy tables, update `README.md` with a ded
 2. **How to regenerate it** — the exact command to re-run the generator script (e.g. `python scripts/generate_dummy_tables.py`).
 3. **How to use it with ehrQL** — the exact `ehrql generate-dataset` command that points at the dummy tables directory, for example:
    ```
-   ehrql generate-dataset analysis/dataset_definition.py \
+   opensafely exec ehrql:v1 generate-dataset analysis/dataset_definition.py \
      --dummy-tables dummy-tables/ \
      --output output/dataset.csv
    ```

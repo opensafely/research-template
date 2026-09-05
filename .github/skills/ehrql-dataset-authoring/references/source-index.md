@@ -3,12 +3,13 @@
 ## Local repo context
 
 - Main dataset-definition file: `analysis/dataset_definition.py`
-- Primary command for dummy-data smoke tests:
-  `ehrql generate-dataset analysis/dataset_definition.py --output output/dataset.csv`
+- Command for dummy-data smoke tests:
+  `opensafely exec ehrql:v1 generate-dataset analysis/dataset_definition.py --output output/dataset.csv`
 - Suggested assurance-test file:
   `analysis/test_dataset_definition.py`
-- Direct assurance command:
-  `ehrql assure analysis/test_dataset_definition.py`
+- Assurance command:
+  `opensafely exec ehrql:v1 assure analysis/test_dataset_definition.py`
+- On the OpenSAFELY Codespace image you can drop the `opensafely exec ` prefix and call `ehrql` directly. See `SKILL.md` for details.
 
 ## Source URLs
 
