@@ -17,5 +17,13 @@ research quality.
 
 Read more at [OpenSAFELY.org](https://opensafely.org).
 
+# AI-assisted ehrQL development
+
+Codex automatically loads the repository's
+[ehrQL dataset-authoring skill](.agents/skills/ehrql-dataset-authoring/SKILL.md)
+when working in this project, including in GitHub Codespaces. The skill provides
+ehrQL authoring guidance and bundled reference documentation without requiring
+a network download during Codespace setup.
+
 # Licences
 As standard, research projects have a MIT license. 
